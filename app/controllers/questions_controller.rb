@@ -1,0 +1,69 @@
+class QuestionsController < ApplicationController
+  # defining a method like 'before_action' will make it so rails executes that method before executing the action
+  # you can give before_action :only and :except which are obvs what they do
+  before_action :find_question, only: [:eidt, :update, :destroy, :show]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :find_user_question, only: [:edit, :update, :destroy]
+
+  def new
+    # Define a new question to properly generate a form
+    @question = Question.new
+  end
+
+  def create
+    question_params
+    @question = Question.new(question_params)
+    @question.user = current_user
+
+    if @question.save
+      flash[:notice] = "Question created"
+      redirect_to @question
+    else
+      flash[:alert] = "Question didn't save"
+      # This will render 'app/views/questions/new.html.erb' because the default
+      # in this action is a create
+      render :new
+    end
+  end
+
+  # Recieve a request: GET /questions/56
+  # params[:id] will be '56'
+  def show
+    @answer = Answer.new
+  end
+
+  def index
+    @questions = Question.all
+  end
+
+  def edit
+  end
+
+  def update
+    # You can pass a notice as a option on the redirect but not the render
+    if @question.update question_params
+      redirect_to @question, notice: "Question updated"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @question.destroy
+    redirect_to questions_path, notice: "Question deleted"
+  end
+
+  private
+
+  def authorize_question
+    redirect_to root_path unless can? :manage, @question
+  end
+
+  def find_question
+    @question = Question.find params[:id]
+  end
+
+  def question_params
+    params.require(:question).permit(:title, :body, :category_id)
+  end
+end
