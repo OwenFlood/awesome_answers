@@ -1,0 +1,42 @@
+class AnswersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :find_question
+  before_action :find_and_authorize_answer, only: [:destroy]
+
+  def create
+    @answer   = Answer.new answer_params
+    @answer.question = @question
+    @answer.user = current_user
+    if @answer.save
+      redirect_to question_path(@question), notice: "dont be wrong"
+    else
+      flash[:alert] = "not saved"
+      render "/questions/show"
+    end
+  end
+
+  def destroy
+    redirect_to root_path unless can? :destroy
+    @answer.destroy
+    redirect_to question_path(question)
+  end
+
+  private
+
+  def find_and_authorize_answer
+    answer = @question.answers.find params[:id]
+    redirect_to root_path unless can? :destroy, @answer
+  end
+
+  def find_question
+    @question = Question.find params[:question_id]
+  end
+
+  def find_user_answer
+    @answer = current_user.answers.find params[:id]
+  end
+
+  def answer_params
+    params.require(:answer).permit(:body)
+  end
+end

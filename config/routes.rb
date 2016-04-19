@@ -1,4 +1,47 @@
 Rails.application.routes.draw do
+
+  # This defines a route so that when we recieve a get request with url: /home
+  # Rails will invoke the WelcomeController with 'index' action
+  # get({"/home" => "welcome#index"})
+  root "welcome#index"
+  get "/home" => "welcome#index"
+
+  get "/about" => "welcome#about_us"
+
+  get "/contact_us" => "contact_us#new"
+
+  post "/contact_us" => "contact_us#create"
+
+  resources :questions do
+    # get :search, on: :collection
+    # get :search, on: :member
+    # get :search
+
+    # This gives us a path with the question id
+    resources :answers, only: [:create, :destroy]
+  end
+
+  resources :users, only: [:new, :create]
+
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+    # delete :destroy, on: :member
+    # delete :destroy
+  end
+  # get     "/questions/new"       => "questions#new"
+  # post    "/questions"           => "questions#create", as: :questions
+  # get     "/questions/:id"       => "questions#show", as: :question
+  # get     "/questions"           => "questions#index"
+  # get     "/questions/:id/edit"  => "questions#edit", as: :edit_question
+  # patch   "/questions/:id"       => "questions#update"
+  # delete  "/questions/:id"       => "questions#destroy"
+
+  # namespace :admin do
+  #    get "questions" => "questions#index"
+  # end
+
+  # delete "/questions" => "questions#delete"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,19 @@
+<h1>HAYYYYYYYYY call me </h1>
+
+<%= form_tag contact_us_path do %>
+  <div class="">
+    <%= label_tag :full_name %>
+    <%= text_field_tag :full_name, nil, {placeholder: "e.g. Jim Bean"} %>
+  </div>
+  <div class="">
+    <%= label_tag :email %>
+    <%= email_field_tag :email %>
+  </div>
+  <div class="">
+    <%= label_tag :message %>
+    <%= text_area_tag :message %>
+  </div>
+  <div class="">
+    <%= submit_tag "Contact Us!" %>
+  </div>
+<% end %>
