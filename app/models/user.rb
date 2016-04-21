@@ -10,7 +10,11 @@ class User < ActiveRecord::Base
 
   has_many :questions, dependent: :nullify
   has_many :answers, dependent: :nullify
-  # attr_accessor :abc
+  has_many :likes, dependent: :destroy
+
+  # we use the source option in here because we used "liked_questions"
+  # instead of "questions". You dont want to have two "has many questions".
+  has_many :liked_questions, through: :likes, source: :question
 
   validates :first_name, presence: true
   validates :last_name, presence: true

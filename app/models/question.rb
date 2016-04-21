@@ -4,6 +4,10 @@ class Question < ActiveRecord::Base
   # putting dependent: lets us either :destroy all the answers with the question <-- DELETE
   # or :nullify the answers that changes the reference id to null                <-- MAKE NULL
   has_many :answers, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
+  has_many :users, through: :likes
+
   belongs_to :category
   belongs_to :user
 
@@ -44,6 +48,14 @@ class Question < ActiveRecord::Base
 
   def user_full_name
     user ? user.full_name : ""
+  end
+
+  def user_signed_in?
+
+  end
+
+  def like_for(user)
+    likes.find_by_user_id user if user
   end
 
   private

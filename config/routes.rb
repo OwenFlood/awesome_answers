@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
     # This gives us a path with the question id
     resources :answers, only: [:create, :destroy]
+
+    resources :likes, only: [:create, :destroy]
   end
 
   resources :users, only: [:new, :create]
