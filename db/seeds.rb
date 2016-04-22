@@ -23,4 +23,8 @@ end
 10.times do
   Category.create(name: Faker::Hacker.adjective)
 end
+
+20.times do
+  Tag.create(name: Faker::Hipster.word)
+end
 puts Cowsay.say("Hey ;)")

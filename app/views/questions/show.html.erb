@@ -3,6 +3,7 @@
 <p><%= @question.body %></p>
 <p>View count: <%= @question.view_count %></p>
 <p>Created by: <%= @question.user_full_name.titleize %></p>
+<p>Tags: <%= @question.tags.map(&:name).join(", ") %></p>
 <% if can? :update, @question %>
   <%= link_to "Edit", edit_question_path(@question) %>
 <% end %>
