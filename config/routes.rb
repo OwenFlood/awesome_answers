@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
   # This defines a route so that when we recieve a get request with url: /home
   # Rails will invoke the WelcomeController with 'index' action
   # get({"/home" => "welcome#index"})
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
     resources :answers, only: [:create, :destroy]
 
     resources :likes, only: [:create, :destroy]
-    
+
     resources :votes, only: [:create, :update, :destroy]
   end
 
