@@ -15,7 +15,46 @@
 <% else %>
   <%= link_to "Like", question_likes_path(@question), method: :post %>
 <% end %>
-(<%= @question.likes.count %>)
+(<%= @question.likes.count %>) | <br>
+ <br>
+
+<% user_vote = @question.vote_for(current_user) %>
+<% if user_vote && user_vote.is_up? %>
+  <%= link_to question_vote_path(@question, user_vote), method: :delete do %>
+    <div class="arrow-up-yes"></div>
+    <% end  %>
+    <div class="">
+      <%= (@question.vote_value) %>
+    </div>
+
+  <%= link_to question_vote_path(@question, user_vote, {vote: {is_up: false}}), method: :patch do %>
+    <div class="arrow-down"></div>
+    <% end  %>
+
+<% elsif user_vote %>
+  <%= link_to question_vote_path(@question, user_vote, {vote: {is_up: true}}), method: :patch do %>
+    <div class="arrow-up"></div>
+    <% end  %>
+    <div class="">
+      <%= (@question.vote_value) %>
+    </div>
+
+  <%= link_to question_vote_path(@question, user_vote), method: :delete do %>
+    <div class="arrow-down-yes"></div>
+    <% end  %>
+
+<% else %>
+  <%= link_to question_votes_path(@question, {vote: {is_up: true}}), method: :post do %>
+    <div class="arrow-up"></div>
+    <% end  %>
+    <div class="">
+      <%= (@question.vote_value) %>
+    </div>
+
+  <%= link_to question_votes_path(@question, {vote: {is_up: false}}), method: :post do %>
+    <div class="arrow-down"></div>
+    <% end  %>
+<% end %>
 
 <hr>
 

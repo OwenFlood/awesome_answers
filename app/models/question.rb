@@ -4,9 +4,13 @@ class Question < ActiveRecord::Base
   # putting dependent: lets us either :destroy all the answers with the question <-- DELETE
   # or :nullify the answers that changes the reference id to null                <-- MAKE NULL
   has_many :answers, dependent: :destroy
-  has_many :likes, dependent: :destroy
 
-  has_many :users, through: :likes
+  has_many :likes, dependent: :destroy
+  # has_many :users, through: :likes
+  has_many :liking_users, through: :likes, source: :user
+
+  has_many :votes, dependent: :destroy
+  has_many :voting_users, through: :votes, source: :user
 
   belongs_to :category
   belongs_to :user
@@ -56,6 +60,14 @@ class Question < ActiveRecord::Base
 
   def like_for(user)
     likes.find_by_user_id user if user
+  end
+
+  def vote_for(user)
+    votes.find_by_user_id user if user
+  end
+
+  def vote_value
+    votes.up_count - votes.down_count
   end
 
   private
