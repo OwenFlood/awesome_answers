@@ -1,0 +1,13 @@
+Hello <%= @owner.first_name %>
+
+You got an answer on your question:
+
+Question title: <%= @question.title %>
+
+The answer: <%= @answer.body %>
+
+<%= link_to "Click here to view the question", question_url(@question) %>
+
+With sexiness
+
+Awesome Answers team
