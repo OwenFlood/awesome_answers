@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   post "/contact_us" => "contact_us#create"
 
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
   resources :questions do
     # get :search, on: :collection
     # get :search, on: :member

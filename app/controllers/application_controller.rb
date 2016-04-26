@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find session[:user_id] if user_signed_in?
   end
   helper_method :current_user
+
+  def sign_in(user)
+    session[:user_id] = user.id
+  end
 end
