@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   # defining a method like 'before_action' will make it so rails executes that method before executing the action
   # you can give before_action :only and :except which are obvs what they do
-  before_action :find_question, only: [:eidt, :update, :destroy, :show]
+  before_action :find_question, only: [:edit, :update, :destroy, :show]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_user_question, only: [:edit, :update, :destroy]
 
@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
       flash[:notice] = "Question created"
       redirect_to @question
     else
-      flash[:alert] = "Question didn't save"
+      flash.now[:alert] = "Question didn't save"
       # This will render 'app/views/questions/new.html.erb' because the default
       # in this action is a create
       render :new
