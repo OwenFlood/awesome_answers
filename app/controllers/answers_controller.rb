@@ -10,19 +10,25 @@ class AnswersController < ApplicationController
     @answer   = Answer.new answer_params
     @answer.question = @question
     @answer.user = current_user
-    if @answer.save
-      AnswersMailer.notify_question_owner(@answer).deliver_later
-      redirect_to question_path(@question), notice: "dont be wrong"
-    else
-      flash[:alert] = "not saved"
-      render "/questions/show"
+    respond_to do |format|
+      if @answer.save
+        AnswersMailer.notify_question_owner(@answer).deliver_later
+        format.html {redirect_to question_path(@question), notice: "dont be wrong"}
+        format.js {render :create_success }
+      else
+        flash[:alert] = "not saved"
+        format.html {render "/questions/show"}
+        format.js {render :create_failure}
+      end
     end
   end
 
   def destroy
-    redirect_to root_path unless can? :destroy
     @answer.destroy
-    redirect_to question_path(question)
+    respond_to do |format|
+      format.html {redirect_to question_path(@question), notice: "Answer Deleted"}
+      format.js { render }
+    end
   end
 
   private

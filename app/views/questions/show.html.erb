@@ -59,19 +59,13 @@
 
 <hr>
 
-<%= @answer.errors.full_messages.join(", ") %>
-<%= form_for [@question, @answer] do |f| %>
-  <%= f.text_area :body %>
-  <%= f.submit %>
-<% end %>
+<div id="answer-form">
+  <%= render "/answers/form", answer: @answer %>
+</div>
 
 <h2>Answers</h2>
-<% @poop = 0 %>
-<% @question.answers.each do |ans| %>
-  Answer <%= @poop += 1 %>: <%= ans.body %>
-  by: <%= @question.user_full_name.titleize %>
-  <% if can? :destroy, ans %>
-    <%= button_to "Delete answer", [@question, ans], method: :delete, data: {confirm: "U sure about this holmes?"} %>
+<div id="answers">
+  <% @question.answers.each_with_index do |ans, index| %>
+  <%= render "/answers/answer", answer: ans, index: index %>
   <% end %>
-  <hr>
-<% end %>
+</div>

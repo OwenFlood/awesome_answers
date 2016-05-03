@@ -33,6 +33,11 @@ class QuestionsController < ApplicationController
   # params[:id] will be '56'
   def show
     @answer = Answer.new
+    respond_to do |format|
+      format.html { render }
+      format.json { render json: @question.to_json }
+      format.xml { render xml: @question.to_xml }
+    end
   end
 
   def index

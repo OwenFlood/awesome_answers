@@ -1,0 +1,3 @@
+$("#answers").prepend("<%= j render 'answer', answer: @answer, index: 0, style: 'display: none' %>");
+$("#answer-form").html("<%= j render '/answers/form', answer: Answer.new %>");
+$("#<%= dom_id(@answer) %>").slideDown(1000);

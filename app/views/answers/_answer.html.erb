@@ -1,0 +1,8 @@
+<div id="<%= dom_id(answer) %>"style="<%= style if defined?(style) %>">
+  Answer <%= index %>: <%= answer.body %>
+  by: <%= answer.user_full_name.titleize %>
+  <% if can? :destroy, answer %>
+  <%= button_to "Delete answer", [@question, answer], method: :delete, remote: true, data: {confirm: "U sure about this holmes?"} %>
+  <% end %>
+  <hr>
+</div>
