@@ -34,6 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'quiet_assets'
 
+gem 'bootstrap-sass', '~> 3.3.6'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
