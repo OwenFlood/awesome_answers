@@ -38,6 +38,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'rack-cors', require: 'rack/cors'
 
+gem 'simple_form'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
