@@ -3,5 +3,8 @@
 <% @questions.each do |q| %>
   <div class="">
     <%= link_to q.title, question_path(q) %>
+    <% if q.image.present? %>
+      <%= image_tag q.image.url(:thumb) %>
+    <% end %>
   </div>
 <% end %>

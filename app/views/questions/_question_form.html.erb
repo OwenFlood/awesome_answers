@@ -14,6 +14,7 @@ It will make the 'method' of 'form' be POST -->
     <%= f.input :body %>
     <%= f.association :category %>
     <%= f.association :tags, input_html: {class: "chosen-select"} %>
+    <%= f.input :image %>
 
     <%= f.submit class: "btn btn-primary" %>
 <% end %>

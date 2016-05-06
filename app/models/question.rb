@@ -41,6 +41,8 @@ class Question < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :history
 
+  mount_uploader :image, ImageUploader
+
   def self.search(string)
     where(["title ILIKE ? OR body ILIKE ?", "%#{string}%", "%#{string}%"])
     # where(["first_name ILIKE ? OR last_name ILIKE ? OR email ILIKE ?", "%#{string}%", "%#{string}%", , "%#{string}%"])
