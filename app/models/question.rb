@@ -38,7 +38,8 @@ class Question < ActiveRecord::Base
   #   order("created_at DESC").limit(3)
   # end
 
-
+  extend FriendlyId
+  friendly_id :title, use: :history
 
   def self.search(string)
     where(["title ILIKE ? OR body ILIKE ?", "%#{string}%", "%#{string}%"])
@@ -72,6 +73,10 @@ class Question < ActiveRecord::Base
   def vote_value
     votes.up_count - votes.down_count
   end
+
+  # def to_param
+  #   "#{id}-#{title}".parameterize
+  # end
 
   private
 

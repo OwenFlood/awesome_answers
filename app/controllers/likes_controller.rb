@@ -30,7 +30,7 @@ class LikesController < ApplicationController
   end
 
   def question
-    @question ||= Question.find params[:question_id]
+    @question ||= Question.friendly.find params[:question_id]
   end
 
   def like

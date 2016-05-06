@@ -53,6 +53,7 @@ class QuestionsController < ApplicationController
 
   def update
     # You can pass a notice as a option on the redirect but not the render
+    @question.slug = nil
     if @question.update question_params
       redirect_to @question, notice: "Question updated"
     else
@@ -72,11 +73,15 @@ class QuestionsController < ApplicationController
   end
 
   def find_question
-    @question = Question.find params[:id]
+    @question = Question.friendly.find params[:id]
   end
 
   def question_params
     params.require(:question).permit([:title, :body, :category_id, {tag_ids: []}])
+  end
+
+  def find_user_question
+    @question = current_user.questions.friendly.find params[:id]
   end
 
   # def user_like
