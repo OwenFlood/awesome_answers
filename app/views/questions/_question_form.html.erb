@@ -13,7 +13,7 @@ It will make the 'method' of 'form' be POST -->
     <%= f.input :title, input_html: {class: "abc"}, label_html: {class: "cba"} %>
     <%= f.input :body %>
     <%= f.association :category %>
-    <%= f.association :tags, as: :check_boxes %>
+    <%= f.association :tags, input_html: {class: "chosen-select"} %>
 
     <%= f.submit class: "btn btn-primary" %>
 <% end %>
