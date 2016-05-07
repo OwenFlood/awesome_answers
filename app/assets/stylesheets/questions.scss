@@ -51,3 +51,18 @@
 	font-size: 16px;
 	margin-top: 8px;
 }
+
+form {
+  .checkbox {
+    display: inline-block;
+    margin-right: 10px;
+    input[type="checkbox"] {
+      margin-left: -13px;
+    }
+  }
+  .check_boxes {
+    label {
+      display: block;
+    }
+  }
+}

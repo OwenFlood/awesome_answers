@@ -4,5 +4,10 @@
   <% if can? :destroy, answer %>
   <%= button_to "Delete answer", [@question, answer], method: :delete, remote: true, data: {confirm: "U sure about this holmes?"} %>
   <% end %>
+
+  <% if can? :edit, answer %>
+    <%= link_to "Edit", edit_question_answer_path(@question, answer), remote: true,
+    data: {toggle: "modal", target: "#edit-answer"}, class: "btn btn-primary btn-sm" %>
+  <% end %>
   <hr>
 </div>

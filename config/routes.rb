@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     # get :search
 
     # This gives us a path with the question id
-    resources :answers, only: [:create, :destroy]
+    resources :answers, only: [:create, :destroy, :edit, :update]
 
     resources :likes, only: [:create, :destroy]
 

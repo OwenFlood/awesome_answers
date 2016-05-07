@@ -34,6 +34,14 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'quiet_assets'
 
+gem 'bootstrap-sass', '~> 3.3.6'
+
+gem 'rack-cors', require: 'rack/cors'
+
+gem 'simple_form'
+
+gem 'chosen-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -45,6 +53,8 @@ gem "rails_12factor", group: :production
 gem 'delayed_job_active_record'
 
 gem 'delayed_job_web'
+
+gem 'jquery-turbolinks'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

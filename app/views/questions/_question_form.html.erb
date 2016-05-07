@@ -9,51 +9,11 @@ It will make the 'method' of 'form' be POST -->
      you passed to the form. The action will be PATCH (using the _method wordaround) %>
 
      <!-- <input type="text" class="form-control" placeholder="Text input"> -->
-<%= form_for @question do |f| %>
-<div>
-  <% if @question.errors.full_messages_for(:title).present? %>
-    <div class="form-group has-error" style="color:maroon">
-      <%= f.label :title, class: "control-label" %>
-      <%= f.text_field :title, class: "form-control" %>
+<%= simple_form_for @question do |f| %>
+    <%= f.input :title, input_html: {class: "abc"}, label_html: {class: "cba"} %>
+    <%= f.input :body %>
+    <%= f.association :category %>
+    <%= f.association :tags, input_html: {class: "chosen-select"} %>
 
-      <% @question.errors.full_messages_for(:title).each do |x| %>
-        <%= x %>
-      <% end %>
-    </div>
-  <% else %>
-    <%= f.label :title %>
-    <%= f.text_field :title, class: "form-control"  %>
-  <% end %>
-</div>
-
-<div>
-  <% if @question.errors.full_messages_for(:body).present? %>
-    <div class="form-group has-error" style="color:maroon">
-      <%= f.label :body, class: "control-label" %>
-      <%= f.text_area :body, class: "form-control" %>
-
-      <% @question.errors.full_messages_for(:body).each do |x| %>
-        <%= x %>
-      <% end %>
-    </div>
-  <% else %>
-    <%= f.label :body %>
-    <%= f.text_area :body, class: "form-control" %>
-  <% end %>
-</div>
-
-<div>
-  <%= f.label :category %>
-  <%= f.collection_select :category_id, Category.order(:name), :id, :name %>
-</div>
-
-<div class="row">
-     <%= f.collection_check_boxes(:tag_ids, Tag.order(:name), :id, :name) do |c| %>
-       <span class="checkbox-s col-md-3 col-sm-3 col-xs-4">
-         <%= c.label { c.check_box + c.text }%>
-       </span>
-     <% end %>
-   </div>
-
-  <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
 <% end %>
