@@ -34,7 +34,7 @@ class AnswersController < ApplicationController
   private
 
   def find_and_authorize_answer
-    answer = @question.answers.find params[:id]
+    @answer = @question.answers.find params[:id]
     redirect_to root_path unless can? :destroy, @answer
   end
 
