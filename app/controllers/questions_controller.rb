@@ -5,8 +5,8 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_user_question, only: [:edit, :update, :destroy]
 
-  include QuestionsAnswersHelper
-  helper_method :user_like
+  # include QuestionsAnswersHelper
+  # helper_method :user_like
 
   def new
     # Define a new question to properly generate a form
