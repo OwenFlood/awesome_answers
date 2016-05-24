@@ -5,6 +5,8 @@ class Question < ActiveRecord::Base
   # or :nullify the answers that changes the reference id to null                <-- MAKE NULL
   has_many :answers, dependent: :destroy
 
+  has_many :insights, dependent: :destroy
+
   has_many :likes, dependent: :destroy
   # has_many :users, through: :likes
   has_many :liking_users, through: :likes, source: :user
