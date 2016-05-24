@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
 
     resources :votes, only: [:create, :update, :destroy]
+
+    resources :insights, only: [:create]
   end
 
   resources :users

@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
     @answer = Answer.new
     respond_to do |format|
       format.html { render }
-      format.json { render json: @question.to_json }
+      format.json { render json: {question: @question.to_json, insights: @question.insights.order(created_at: :desc)} }
       format.xml { render xml: @question.to_xml }
     end
   end

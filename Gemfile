@@ -42,6 +42,8 @@ gem 'simple_form'
 
 gem 'chosen-rails'
 
+gem "react-rails"
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
