@@ -70,3 +70,20 @@ form {
 img.full-width {
 	width: 100%;
 }
+
+.all-questions {
+	width: 75%;
+  margin: 0 auto;
+	margin-top: 50px;
+
+	.question-title {
+		display: inline-block;
+		font-size: 18px;
+	}
+
+	.question-likes-votes {
+		display: inline-block;
+		float: right;
+		vertical-align: middle;
+	}
+}

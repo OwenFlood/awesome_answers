@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # This defines a route so that when we recieve a get request with url: /home
   # Rails will invoke the WelcomeController with 'index' action
   # get({"/home" => "welcome#index"})
-  root "welcome#index"
+  root "questions#index"
   get "/home" => "welcome#index"
 
   get "/about" => "welcome#about_us"
