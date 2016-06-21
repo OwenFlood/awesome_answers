@@ -1,16 +1,5 @@
-<!-- form_for is a method that accepts an active record vairable as the first argument
-if @question is not persisted in the database, form_for makes the action of the
-form go to 'questions_path' <- rails convention.
-It will make the 'method' of 'form' be POST -->
-
-<%# If you give the `form_for` helper an ActiveRecord object that is persisted
-    then the generated form will have an action that submits to
-     `question_path(@question)` where @question is the ActiveRecord object that
-     you passed to the form. The action will be PATCH (using the _method wordaround) %>
-
-     <!-- <input type="text" class="form-control" placeholder="Text input"> -->
 <%= simple_form_for @question do |f| %>
-    <%= f.input :title, input_html: {class: "abc"}, label_html: {class: "cba"} %>
+    <%= f.input :title %>
     <%= f.input :body %>
     <%= f.association :category %>
     <%= f.association :tags, input_html: {class: "chosen-select"} %>
