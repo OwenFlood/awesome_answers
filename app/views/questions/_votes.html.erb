@@ -1,0 +1,36 @@
+<% user_vote = @question.vote_for(current_user) %>
+
+<% if user_vote && user_vote.is_up? %>
+  <%= link_to question_vote_path(@question, user_vote), method: :delete do %>
+    <div class="vote-arrows upvote-yes"></div>
+  <% end %>
+
+
+  <%= link_to question_vote_path(@question, user_vote, {vote: {is_up: false}}), method: :patch do %>
+    <div class="vote-arrows downvote"></div>
+  <% end %>
+
+<% elsif user_vote %>
+  <%= link_to question_vote_path(@question, user_vote, {vote: {is_up: true}}), method: :patch do %>
+    <div class="vote-arrows upvote"></div>
+    <% end %>
+    <div class="">
+      <%= (@question.vote_value) %>
+    </div>
+
+  <%= link_to question_vote_path(@question, user_vote), method: :delete do %>
+    <div class="vote-arrows downvote-yes"></div>
+    <% end %>
+
+<% else %>
+  <%= link_to question_votes_path(@question, {vote: {is_up: true}}), method: :post do %>
+    <div class="vote-arrows upvote"></div>
+    <% end %>
+    <div class="">
+      <%= (@question.vote_value) %>
+    </div>
+
+  <%= link_to question_votes_path(@question, {vote: {is_up: false}}), method: :post do %>
+    <div class="vote-arrows downvote"></div>
+    <% end %>
+<% end %>
